@@ -18,16 +18,16 @@ namespace TappointmentToGo.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class AccountDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
+        public AccountDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
-        public static ApplicationDbContext Create()
+        public static AccountDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new AccountDbContext();
         }
     }
 }
