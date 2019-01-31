@@ -210,6 +210,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901300822599_InitialCreate.cs" />
+    <Compile Include="Migrations\201901300822599_InitialCreate.Designer.cs">
+      <DependentUpon>201901300822599_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901310910255_Test.cs" />
+    <Compile Include="Migrations\201901310910255_Test.Designer.cs">
+      <DependentUpon>201901310910255_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901310930136_MoveToSingleContext.cs" />
+    <Compile Include="Migrations\201901310930136_MoveToSingleContext.Designer.cs">
+      <DependentUpon>201901310930136_MoveToSingleContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -307,6 +320,17 @@
     </None>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901300822599_InitialCreate.resx">
+      <DependentUpon>201901300822599_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901310910255_Test.resx">
+      <DependentUpon>201901310910255_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901310930136_MoveToSingleContext.resx">
+      <DependentUpon>201901310930136_MoveToSingleContext.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
