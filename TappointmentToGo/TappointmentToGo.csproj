@@ -222,6 +222,14 @@
     <Compile Include="Migrations\201901310930136_MoveToSingleContext.Designer.cs">
       <DependentUpon>201901310930136_MoveToSingleContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901311026584_FixedNullableProperties.cs" />
+    <Compile Include="Migrations\201901311026584_FixedNullableProperties.Designer.cs">
+      <DependentUpon>201901311026584_FixedNullableProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901311033024_ChangedPriceToInt.cs" />
+    <Compile Include="Migrations\201901311033024_ChangedPriceToInt.Designer.cs">
+      <DependentUpon>201901311033024_ChangedPriceToInt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -236,6 +244,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SampleData - .NET.sql" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -303,9 +312,7 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -330,6 +337,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901310930136_MoveToSingleContext.resx">
       <DependentUpon>201901310930136_MoveToSingleContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901311026584_FixedNullableProperties.resx">
+      <DependentUpon>201901311026584_FixedNullableProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901311033024_ChangedPriceToInt.resx">
+      <DependentUpon>201901311033024_ChangedPriceToInt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

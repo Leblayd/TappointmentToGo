@@ -10,8 +10,8 @@ namespace TappointmentToGo.Models
         public Category Category { get; set; }
         public string Description { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
-        public bool Spicy { get; set; }
-        public bool Vegetarian { get; set; }
+        public int Price { get; set; }
+        public bool? Spicy { get; set; }
+        public bool? Vegetarian { get; set; }
     }
 }
