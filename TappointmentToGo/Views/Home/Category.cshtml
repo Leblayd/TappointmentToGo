@@ -18,19 +18,19 @@
             <tbody>
                 @foreach (var model in Model.MenuItems)
                 {
-                <tr>
-                    @{ var modelId = @model.Id.ToString(); }
-                    <td>@Html.Name(model.Name)</td>
-                    <td>@Html.Name(model.Price.ToString())</td>
-                    <td>
-                        <div class="btn btn-primary add-to-cart-button" style="cursor: pointer" data-id="@modelId">Buy</div>
-                    </td>
-                </tr>
+                    <tr>
+                        @{ var modelId = @model.Id.ToString(); }
+                        <td>@Html.Name(model.Name)</td>
+                        <td>@Html.Name(model.Price.ToString())</td>
+                        <td>
+                            <div class="btn btn-primary add-to-cart-button" style="cursor: pointer" data-id="@modelId">Buy</div>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
     </div>
-    <div class="col-lg-6 text-center">
+    <div class="col-lg-6 text-center" id="right-column">
         <h2>
             @Html.DisplayFor(model => model.Name)
         </h2>
@@ -40,6 +40,7 @@
         </p>
     </div>
 </div>
+
 @section scripts{
 <script>
     $(function () {
@@ -50,9 +51,16 @@
             });
 
             request.done(function (d) {
-                // TODO put in some sort of feedback
-                console.log(d);
-                $(".result").text(d);
+                $("#cart-items-number").text($("#cart-items-number").text() - 0 + 1);
+
+                $("#right-column").append(
+                    `<div class="alert alert-success">
+                        <strong>Success!</strong> Item added to cart.
+                    </div>`);
+
+                $(".alert").delay(1500).slideUp(200, function () {
+                    $(this).alert('close');
+                });
             });
 
             request.fail(function (xhr, err) {

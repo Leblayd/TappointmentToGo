@@ -1,8 +1,14 @@
-﻿@if (Request.IsAuthenticated)
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
             @Html.ActionLink("Cart", "Index", "Cart", routeValues: null, htmlAttributes: new { title = "Cart" })
+        </li>
+        <li>
+            <div class="text-info" id="cart-items-number">
+                @Html.Action("ItemsNumber", "Cart")
+            </div>
         </li>
     </ul>
 }

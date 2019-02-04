@@ -29,6 +29,12 @@ namespace TappointmentToGo.Controllers
             return user.Cart;
         }
 
+        // GET: Cart/ItemsNumber
+        public int ItemsNumber()
+        {
+            return user.Cart?.CartItems.Sum(ci => ci.Count) ?? 0;
+        }
+
         // PUT: Cart/Add/5
         [HttpPut]
         public void Add(int id)
