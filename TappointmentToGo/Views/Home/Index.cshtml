@@ -10,6 +10,6 @@
 <div class="row text-center">
     @foreach (var item in Model)
     {
-        @Html.ActionLink(item.Name, "Details", "Categories", new { id = item.Id }, new { @class = "col-md-4 jumbotron btn-default no-decoration" })
+        @Html.ActionLink(item.Name, "Category", "Home", new { id = item.Id }, new { @class = "col-md-4 jumbotron btn-default no-decoration" })
     }
 </div>

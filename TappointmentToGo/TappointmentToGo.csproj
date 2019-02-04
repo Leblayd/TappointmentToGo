@@ -204,31 +204,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901300822599_InitialCreate.cs" />
-    <Compile Include="Migrations\201901300822599_InitialCreate.Designer.cs">
-      <DependentUpon>201901300822599_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901310910255_Test.cs" />
-    <Compile Include="Migrations\201901310910255_Test.Designer.cs">
-      <DependentUpon>201901310910255_Test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901310930136_MoveToSingleContext.cs" />
-    <Compile Include="Migrations\201901310930136_MoveToSingleContext.Designer.cs">
-      <DependentUpon>201901310930136_MoveToSingleContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901311026584_FixedNullableProperties.cs" />
-    <Compile Include="Migrations\201901311026584_FixedNullableProperties.Designer.cs">
-      <DependentUpon>201901311026584_FixedNullableProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901311033024_ChangedPriceToInt.cs" />
-    <Compile Include="Migrations\201901311033024_ChangedPriceToInt.Designer.cs">
-      <DependentUpon>201901311033024_ChangedPriceToInt.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
@@ -284,7 +264,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -306,11 +285,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_CartPartial.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
-    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -327,23 +303,6 @@
     </None>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901300822599_InitialCreate.resx">
-      <DependentUpon>201901300822599_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901310910255_Test.resx">
-      <DependentUpon>201901310910255_Test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901310930136_MoveToSingleContext.resx">
-      <DependentUpon>201901310930136_MoveToSingleContext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901311026584_FixedNullableProperties.resx">
-      <DependentUpon>201901311026584_FixedNullableProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901311033024_ChangedPriceToInt.resx">
-      <DependentUpon>201901311033024_ChangedPriceToInt.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

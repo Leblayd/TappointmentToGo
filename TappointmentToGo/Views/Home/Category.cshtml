@@ -1,0 +1,64 @@
+﻿@model TappointmentToGo.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@using Microsoft.AspNet.Identity
+<h2>Details</h2>
+
+<h4>Category</h4>
+<hr />
+<div class="row">
+    <div class="col-lg-6">
+        <table class="table">
+            <thead>
+
+            </thead>
+            <tbody>
+                @foreach (var model in Model.MenuItems)
+                {
+                <tr>
+                    @{ var modelId = @model.Id.ToString(); }
+                    <td>@Html.Name(model.Name)</td>
+                    <td>@Html.Name(model.Price.ToString())</td>
+                    <td>
+                        <div class="btn btn-primary add-to-cart-button" style="cursor: pointer" data-id="@modelId">Buy</div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-6 text-center">
+        <h2>
+            @Html.DisplayFor(model => model.Name)
+        </h2>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>
+@section scripts{
+<script>
+    $(function () {
+        $(".add-to-cart-button").on("click", function (e) {
+            var request = $.ajax({
+                type: "PUT",
+                url: `/Cart/Add/${e.target.dataset["id"]}`
+            });
+
+            request.done(function (d) {
+                // TODO put in some sort of feedback
+                console.log(d);
+                $(".result").text(d);
+            });
+
+            request.fail(function (xhr, err) {
+                console.log("It died...%o", err);
+            });
+        });
+    })
+</script>
+}
