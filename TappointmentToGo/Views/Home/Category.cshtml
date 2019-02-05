@@ -54,16 +54,9 @@
             });
 
             request.done(function (d) {
+                popup("alert-success", "Item added to cart.");
+
                 $("#cart-items-number").text($("#cart-items-number").text() - 0 + 1);
-
-                $("#right-column").append(
-                    `<div class="alert alert-success">
-                        <strong>Success!</strong> Item added to cart.
-                    </div>`);
-
-                $(".alert").delay(1500).slideUp(200, function () {
-                    $(this).alert('close');
-                });
             });
 
             request.fail(function (xhr, err) {
