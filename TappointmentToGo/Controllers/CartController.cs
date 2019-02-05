@@ -24,22 +24,24 @@ namespace TappointmentToGo.Controllers
         }
 
         // GET: Cart
-        public Cart Index()
+        [HttpGet]
+        public ActionResult Index()
         {
-            return user.Cart;
+            return View(user.Cart);
         }
 
         // GET: Cart/ItemsNumber
+        [HttpGet]
         public int ItemsNumber()
         {
             return user.Cart?.CartItems.Sum(ci => ci.Count) ?? 0;
         }
 
-        // PUT: Cart/Add/5
-        [HttpPut]
+        // POST: Cart/Index/5
+        [HttpPost]
+        [ActionName("Index")]
         public void Add(int id)
         {
-            InitializeCart();
             user.Cart.Add(context.MenuItems.Find(id));
 
             context.Entry(user).State = EntityState.Modified;
@@ -47,17 +49,30 @@ namespace TappointmentToGo.Controllers
             context.SaveChanges();
         }
 
-        public void InitializeCart()
+        // PUT: Cart/Index/5?count=3
+        [HttpPut]
+        [ActionName("Index")]
+        public void Edit(int id, int count)
         {
-            if (user.Cart == null)
-            {
-                user.Cart = new Cart();
-                context.Entry(user.Cart).State = EntityState.Added;
-            }
-            else
-            {
-                context.Entry(user.Cart).State = EntityState.Modified;
-            }
+            CartItem item = user.Cart.CartItems.Find(ci => ci.Id == id);
+            item.Count = count;
+
+            context.Entry(user).State = EntityState.Modified;
+
+            context.SaveChanges();
+        }
+
+        // DELETE: Cart/Index/5
+        [HttpDelete]
+        [ActionName("Index")]
+        public void Remove(int id)
+        {
+            CartItem item = user.Cart.CartItems.Find(ci => ci.Id == id);
+            user.Cart.CartItems.Remove(item);
+
+            context.Entry(item).State = EntityState.Deleted;
+
+            context.SaveChanges();
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)

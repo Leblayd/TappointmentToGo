@@ -20,7 +20,6 @@ namespace TappointmentToGo.Controllers
         }
 
         // GET: Home/Category/5
-        [Route("Category/{id}")]
         public ActionResult Category(int? id)
         {
             if (id == null)
