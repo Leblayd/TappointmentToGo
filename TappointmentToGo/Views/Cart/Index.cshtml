@@ -1,0 +1,126 @@
+﻿@model TappointmentToGo.Models.Cart
+
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h2>Cart</h2>
+
+<h4>Category</h4>
+<hr />
+<div class="row">
+    <div class="col-lg-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Number</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var model in Model.CartItems)
+                {
+                    var modelId = @model.Id.ToString();
+                    <tr id="item-@modelId">
+                        <td>@Html.Name(model.MenuItem.Name)</td>
+                        <td id="item-@modelId-price">@Html.Name(model.MenuItem.Price.ToString())</td>
+                        <td>
+                            @Html.TextBox("Count", model.Count, new { @class = "input-sm", type = "number", id = $"item-{modelId}-count" })
+                            <div class="btn btn-primary edit-in-cart-button" style="cursor: pointer" data-id="@modelId">Update</div>
+                        </td>
+                        <td id="item-@modelId-subtotal">@Html.Name((model.Count * model.MenuItem.Price).ToString())</td>
+                        <td>
+                            <div class="btn btn-danger remove-from-cart-button" style="cursor: pointer" data-id="@modelId">Remove</div>
+                        </td>
+                    </tr>
+                }
+                @if (Model.CartItems.Count > 0)
+                {
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td id="total-price">@Model.CartItems.Sum(ci => ci.MenuItem.Price * ci.Count)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="right-column" class="col-lg-4">
+        <button>Checkout</button>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        function popup(alertClass, message) {
+            $("#right-column").append(
+                `<div class="alert ${alertClass}">
+                                <strong>Success!</strong> ${message}.
+                            </div>`);
+
+            $(".alert").delay(1500).slideUp(200, function () {
+                $(this).alert('close');
+            });
+        }
+
+        $(function () {
+            $(".edit-in-cart-button").on("click",
+                function (e) {
+                    let id = e.target.dataset["id"];
+                    let defaultCount = $(`#item-${id}-count`)[0].defaultValue - 0;
+                    let count = $(`#item-${id}-count`).val() - 0;
+
+                    var request = $.ajax({
+                        type: "PUT",
+                        url: `/Cart/Index/${id}?count=${count}`
+                    });
+
+                    request.done(function (data) {
+                        popup("alert-primary", "Item count in cart modified.");
+
+                        $("#cart-items-number").text($("#cart-items-number").text() - defaultCount + count);
+                        $(`#item-${id}-count`)[0].defaultValue = count;
+
+                        let subTotal = $(`#item-${id}-subtotal`);
+                        let priceDiff = (count - defaultCount) * $(`#item-${id}-price`).text();
+                        subTotal.text(subTotal.text() - 0 + priceDiff);
+
+                        $("#total-price").text($("#total-price").text() - 0 + priceDiff);
+                    });
+
+                    request.fail(function (xhr, err) {
+                        console.log("It died...%o", err);
+                    });
+                }
+            );
+
+            $(".remove-from-cart-button").on("click",
+                function (e) {
+                    let id = e.target.dataset["id"];
+                    let defaultCount = $(`#item-${id}-count`)[0].defaultValue;
+
+                    var request = $.ajax({
+                        type: "DELETE",
+                        url: `/Cart/Index/${id}`
+                    });
+
+                    request.done(function (data) {
+                        popup("alert-danger", "Item deleted from cart.");
+
+                        $("#cart-items-number").text($("#cart-items-number").text() - defaultCount);
+                        $("#total-price").text($("#total-price").text() - $(`#item-${id}-subtotal`).text());
+                        $(`#item-${id}`).remove();
+                    })
+
+                    request.fail(function (xhr, err) {
+                        console.log("It died...%o", err);
+                    });
+                }
+            );
+        })
+    </script>
+}
