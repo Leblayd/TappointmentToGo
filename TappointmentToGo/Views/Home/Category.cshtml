@@ -4,23 +4,27 @@
     ViewBag.Title = "Details";
 }
 
-@using Microsoft.AspNet.Identity
-<h2>Details</h2>
+<h2>@Html.Name(Model.Name)</h2>
 
-<h4>Category</h4>
 <hr />
 <div class="row">
     <div class="col-lg-6">
         <table class="table">
             <thead>
-
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
                 @foreach (var model in Model.MenuItems)
                 {
-                    <tr>
-                        @{ var modelId = @model.Id.ToString(); }
+                    var modelId = @model.Id.ToString();
+                    <tr id="item-@modelId">
                         <td>@Html.Name(model.Name)</td>
+                        <td>@Html.Name(model.Description)</td>
                         <td>@Html.Name(model.Price.ToString())</td>
                         <td>
                             <div class="btn btn-primary add-to-cart-button" style="cursor: pointer" data-id="@modelId">Buy</div>
@@ -35,7 +39,6 @@
             @Html.DisplayFor(model => model.Name)
         </h2>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
             @Html.ActionLink("Back to List", "Index")
         </p>
     </div>
@@ -46,8 +49,8 @@
     $(function () {
         $(".add-to-cart-button").on("click", function (e) {
             var request = $.ajax({
-                type: "PUT",
-                url: `/Cart/Add/${e.target.dataset["id"]}`
+                type: "POST",
+                url: `/Cart/Index/${e.target.dataset["id"]}`
             });
 
             request.done(function (d) {

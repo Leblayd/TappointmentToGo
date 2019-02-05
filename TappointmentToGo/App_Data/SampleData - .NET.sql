@@ -22,7 +22,7 @@ INSERT INTO [dbo].[Categories]
 		   [Name])
 	   VALUES
 		   (3
-		   ,'Maindish')
+		   ,'Main Dish')
 
 INSERT INTO [dbo].[Categories]
 		   ([Id],
