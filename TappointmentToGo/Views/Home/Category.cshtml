@@ -8,7 +8,7 @@
 
 <hr />
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-8">
         <table class="table">
             <thead>
                 <tr>
@@ -22,22 +22,32 @@
                 @foreach (var model in Model.MenuItems)
                 {
                     var modelId = @model.Id.ToString();
-                    <tr id="item-@modelId">
-                        <td>@Html.Name(model.Name)</td>
-                        <td>@Html.Name(model.Description)</td>
-                        <td>@Html.Name(model.Price.ToString())</td>
-                        <td>
+                <tr id="item-@modelId">
+                    <td>@Html.Name(model.Name)</td>
+                    <td>@Html.Name(model.Description)</td>
+                    <td>@Html.Name(model.Price.ToString())</td>
+                    <td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
                             <div class="btn btn-primary add-to-cart-button" style="cursor: pointer" data-id="@modelId">Buy</div>
-                        </td>
-                    </tr>
+                        }
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
     </div>
-    <div class="col-lg-6 text-center" id="right-column">
+    <div class="col-lg-4 text-center" id="right-column">
         <h2>
             @Html.DisplayFor(model => model.Name)
         </h2>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <strong>
+                Please @Html.ActionLink("log in", "Login", "Account") or
+                @Html.ActionLink("register", "Register", "Account") to be able to use the cart.
+            </strong>
+        }
         <p>
             @Html.ActionLink("Back to List", "Index")
         </p>

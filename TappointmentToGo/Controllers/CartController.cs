@@ -12,7 +12,7 @@ using TappointmentToGo.Models;
 
 namespace TappointmentToGo.Controllers
 {
-    [Authorize]
+    [Authorize] // BUG currently the "api" routes return with 200(OK) even if the user isn't logged in
     public class CartController : Controller
     {
         private ApplicationDbContext context;
