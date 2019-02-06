@@ -65,7 +65,7 @@
 
                     var request = $.ajax({
                         type: "PUT",
-                        url: `/Cart/Index/${id}?count=${count}`
+                        url: `/api/Cart/${id}?count=${count}`
                     });
 
                     request.done(function (data) {
@@ -94,11 +94,11 @@
 
                     var request = $.ajax({
                         type: "DELETE",
-                        url: `/Cart/Index/${id}`
+                        url: `/api/Cart/${id}`
                     });
 
                     request.done(function (data) {
-                        popup("alert-danger", "Success!", "Item deleted from cart.");
+                        popup("alert-info", "", "Item deleted from cart.");
 
                         $("#cart-items-number").text($("#cart-items-number").text() - defaultCount);
                         $("#total-price").text($("#total-price").text() - $(`#item-${id}-subtotal`).text());

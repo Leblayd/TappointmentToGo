@@ -60,7 +60,7 @@
         $(".add-to-cart-button").on("click", function (e) {
             var request = $.ajax({
                 type: "POST",
-                url: `/Cart/Index/${e.target.dataset["id"]}`
+                url: `/api/Cart/${e.target.dataset["id"]}`
             });
 
             request.done(function (d) {
@@ -70,8 +70,7 @@
             });
 
             request.fail(function (xhr, err) {
-                debugger;
-                popup("alert-danger", "Error!", err);
+                popup("alert-danger", "Error!", xhr.statusText);
             });
         });
     })
