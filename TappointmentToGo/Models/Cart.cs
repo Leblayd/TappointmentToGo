@@ -23,9 +23,8 @@ namespace TappointmentToGo.Models
             MaxAmount = max;
         }
 
-        public void Add(int id)
+        public void Add(MenuItem menuItem)
         {
-            var menuItem = context.MenuItems.Find(id);
             if (IsCartFull(menuItem.Price))
                 throw new CartFullException(MaxAmount);
 

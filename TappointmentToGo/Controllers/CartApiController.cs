@@ -32,7 +32,7 @@ namespace TappointmentToGo.Controllers.Api
         {
             try
             {
-                user.Cart.Add(id);
+                user.Cart.Add(context.MenuItems.Find(id));
             }
             catch (CartFullException e)
             {
