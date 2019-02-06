@@ -25,28 +25,30 @@ namespace TappointmentToGo.Models
 
         public void Add(MenuItem menuItem)
         {
-            if (IsCartFull(menuItem.Price))
-                throw new CartFullException(MaxAmount);
-
             var cartItem = CartItems.Find(ci => ci.MenuItem == menuItem);
             if (cartItem == null)
-                CartItems.Add(new CartItem() { MenuItem = menuItem, Count = 1 });
+                AddNew(menuItem);
             else
-                cartItem.Count += 1;
+                Set(cartItem, cartItem.Count + 1);
         }
 
-        public void Set(int id, int count)
+        private void AddNew(MenuItem menuItem)
         {
-            var cartItem = CartItems.Find(ci => ci.Id == id);
+            if (IsCartFull(menuItem.Price))
+                throw new CartFullException(MaxAmount);
+            CartItems.Add(new CartItem() { MenuItem = menuItem, Count = 1 });
+        }
+
+        public void Set(CartItem cartItem, int count)
+        {
             if (IsCartFull(cartItem.MenuItem.Price * count - cartItem.Price))
                 throw new CartFullException(MaxAmount);
             cartItem.Count = count;
         }
 
-        public void Remove(int id)
+        public void Remove(CartItem cartItem)
         {
-            var item = CartItems.Find(ci => ci.Id == id);
-            CartItems.Remove(item);
+            CartItems.Remove(cartItem);
         }
 
         public bool IsCartFull(int difference)

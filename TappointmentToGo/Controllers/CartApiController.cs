@@ -47,24 +47,33 @@ namespace TappointmentToGo.Controllers.Api
 
         // PUT: api/Cart/5?count=3
         [HttpPut]
-        public void Edit(int id, int count)
+        public IHttpActionResult Edit(int id, int count)
         {
-            user.Cart.Set(id, count);
+            try
+            {
+                user.Cart.Set(context.CartItems.Find(id), count);
+            }
+            catch (CartFullException e)
+            {
+                return BadRequest(e.Message);
+            }
 
             context.Entry(user).State = EntityState.Modified;
-
             context.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // DELETE: api/Cart/5
         [HttpDelete]
-        public void Remove(int id)
+        public IHttpActionResult Remove(int id)
         {
-            user.Cart.Remove(id);
+            user.Cart.Remove(context.CartItems.Find(id));
 
             context.Entry(user).State = EntityState.Modified;
-
             context.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }
