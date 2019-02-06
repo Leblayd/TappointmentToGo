@@ -36,13 +36,10 @@ namespace TappointmentToGo.Controllers.Api
             }
             catch (CartFullException e)
             {
-                return BadRequest(e.Message);
+                return InternalServerError(e);
             }
 
-            context.Entry(user.Cart).State = EntityState.Modified;
-            context.SaveChanges();
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return SaveUserState();
         }
 
         // PUT: api/Cart/5?count=3
@@ -55,13 +52,10 @@ namespace TappointmentToGo.Controllers.Api
             }
             catch (CartFullException e)
             {
-                return BadRequest(e.Message);
+                return InternalServerError(e);
             }
-
-            context.Entry(user).State = EntityState.Modified;
-            context.SaveChanges();
-
-            return StatusCode(HttpStatusCode.NoContent);
+            
+            return SaveUserState();
         }
 
         // DELETE: api/Cart/5
@@ -70,10 +64,19 @@ namespace TappointmentToGo.Controllers.Api
         {
             user.Cart.Remove(context.CartItems.Find(id));
 
+            return SaveUserState();
+        }
+
+        private IHttpActionResult SaveUserState()
+        {
+            // Hidden "bug" that returns a nonsensical number to confuse the user
+            if (user.Cart.Total >= 10000 && user.Cart.CartItems.Sum(ci => ci.Count) > 1)
+                return InternalServerError(new Exception("Critical Server Error. Error code:" + GetHashCode()));
+
             context.Entry(user).State = EntityState.Modified;
             context.SaveChanges();
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok();
         }
     }
 }

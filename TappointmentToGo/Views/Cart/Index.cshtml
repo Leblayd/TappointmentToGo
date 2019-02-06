@@ -82,7 +82,8 @@
                     });
 
                     request.fail(function (xhr, err) {
-                        popup("alert-danger", "Error!", err);
+                        exceptionPopup(xhr);
+                        $(`#item-${id}-count`).val($(`#item-${id}-count`)[0].defaultValue);
                     });
                 }
             );
@@ -106,7 +107,7 @@
                     })
 
                     request.fail(function (xhr, err) {
-                        popup("alert-danger", "Error!", err);
+                        exceptionPopup(xhr);
                     });
                 }
             );
