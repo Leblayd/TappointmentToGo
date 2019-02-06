@@ -42,7 +42,7 @@ namespace TappointmentToGo.Controllers
         [ActionName("Index")]
         public void Add(int id)
         {
-            user.Cart.Add(context.MenuItems.Find(id));
+            user.Cart.Add(id);
 
             context.Entry(user).State = EntityState.Modified;
 
@@ -54,8 +54,7 @@ namespace TappointmentToGo.Controllers
         [ActionName("Index")]
         public void Edit(int id, int count)
         {
-            CartItem item = user.Cart.CartItems.Find(ci => ci.Id == id);
-            item.Count = count;
+            user.Cart.Set(id, count);
 
             context.Entry(user).State = EntityState.Modified;
 
@@ -67,10 +66,9 @@ namespace TappointmentToGo.Controllers
         [ActionName("Index")]
         public void Remove(int id)
         {
-            CartItem item = user.Cart.CartItems.Find(ci => ci.Id == id);
-            user.Cart.CartItems.Remove(item);
+            user.Cart.Remove(id);
 
-            context.Entry(item).State = EntityState.Deleted;
+            context.Entry(user).State = EntityState.Modified;
 
             context.SaveChanges();
         }

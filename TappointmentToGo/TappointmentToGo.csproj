@@ -210,6 +210,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902051346247_Added MaxAmount to Cart.cs" />
+    <Compile Include="Migrations\201902051346247_Added MaxAmount to Cart.Designer.cs">
+      <DependentUpon>201902051346247_Added MaxAmount to Cart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902061312471_Fixed MenuItem.cs" />
+    <Compile Include="Migrations\201902061312471_Fixed MenuItem.Designer.cs">
+      <DependentUpon>201902061312471_Fixed MenuItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -290,7 +298,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902051346247_Added MaxAmount to Cart.resx">
+      <DependentUpon>201902051346247_Added MaxAmount to Cart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902061312471_Fixed MenuItem.resx">
+      <DependentUpon>201902061312471_Fixed MenuItem.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
