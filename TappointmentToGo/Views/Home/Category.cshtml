@@ -64,13 +64,14 @@
             });
 
             request.done(function (d) {
-                popup("alert-success", "Item added to cart.");
+                popup("alert-success", "Success!", "Item added to cart.");
 
                 $("#cart-items-number").text($("#cart-items-number").text() - 0 + 1);
             });
 
             request.fail(function (xhr, err) {
-                console.log("It died...%o", err);
+                debugger;
+                popup("alert-danger", "Error!", err);
             });
         });
     })

@@ -1,8 +1,8 @@
-﻿function popup(alertClass, message) {
+﻿function popup(alertClass, title, message) {
     $("#right-column").append(
         `<div class="alert ${alertClass}">
-                                <strong>Success!</strong> ${message}.
-                            </div>`);
+            <strong>${title}</strong> ${message}.
+        </div>`);
 
     $(".alert").delay(1500).slideUp(200, function () {
         $(this).alert('close');
