@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TappointmentToGo.Models;
@@ -35,6 +36,37 @@ namespace TappointmentToGo.Controllers
         public int ItemsNumber()
         {
             return user.Cart.CartItems.Sum(ci => ci.Count);
+        }
+
+        // GET: Cart/Checkout
+        [HttpGet]
+        public ActionResult Checkout()
+        {
+            return View();
+        }
+
+        // POST: Cart/Checkout
+        [HttpPost]
+        public async Task<ActionResult> Checkout(OrderViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var order = new Order
+            {
+                Address = model.Address,
+                Name = $"{model.LastName}, {model.FirstName}",
+                Telephone = model.Telephone,
+                Cart = user.Cart
+            };
+            context.Entry(order).State = EntityState.Added;
+
+            user.NewEmptyCart();
+            context.Entry(user.Cart).State = EntityState.Added;
+
+            await context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
