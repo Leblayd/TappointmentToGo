@@ -14,6 +14,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
+                    <th class="text-center">Info</th>
                     <th>Price</th>
                     <th></th>
                 </tr>
@@ -25,11 +26,21 @@
                 <tr id="item-@modelId">
                     <td>@Html.Name(model.Name)</td>
                     <td>@Html.Name(model.Description)</td>
+                    <td class="text-center">
+                        @if (model.Vegetarian.GetValueOrDefault())
+                        {
+                        <span title="Vegetarian" class="food-info-icon" style="color: green">&#129367;</span>
+                        }
+                        @if (model.Spicy.GetValueOrDefault())
+                        {
+                        <span title="Spicy" class="food-info-icon" style="color: red">&#127798;</span>
+                        }
+                    </td>
                     <td>@Html.Name(model.Price.ToString())</td>
                     <td>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <div class="btn btn-primary add-to-cart-button" style="cursor: pointer" data-id="@modelId">Buy</div>
+                            <div class="btn btn-success add-to-cart-button" style="cursor: pointer" data-id="@modelId">Buy</div>
                         }
                     </td>
                 </tr>
@@ -48,9 +59,10 @@
                 @Html.ActionLink("register", "Register", "Account") to be able to use the cart.
             </strong>
         }
-        <p>
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+        <hr />
+        <h4>
+            @Html.ActionLink("Go back", "Index", null, new { @class = "btn btn-primary btn-block" })
+        </h4>
     </div>
 </div>
 

@@ -23,14 +23,30 @@ textarea {
     max-width: 280px;
 }
 
-.no-decoration {
-    text-decoration: none !important;
-}
-
 .cart-button {
     font-size: xx-large;
-    text-decoration: none !important;
 }
     .cart-button:hover {
+        text-decoration: none;
         text-shadow: 0 0 19px #3dff00;
+    }
+
+.food-info-icon {
+    font-size: large;
+}
+
+.category-button {
+    color: white;
+    font-family: cursive;
+    font-weight: bolder;
+    text-decoration: none !important;
+    font-size: x-large;
+    border-radius: 12px;
+    background-color: #afd8a3;
+    margin: 20px 0;
+    padding: 20px 0;
+}
+    .category-button:hover {
+        background-color: #7db76b;
+        color: white;
     }
