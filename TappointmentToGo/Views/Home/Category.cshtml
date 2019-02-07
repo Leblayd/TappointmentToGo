@@ -70,7 +70,7 @@
             });
 
             request.fail(function (xhr, err) {
-                popup("alert-danger", "Error!", xhr.statusText);
+                exceptionPopup(xhr);
             });
         });
     })
