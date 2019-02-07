@@ -42,6 +42,8 @@ namespace TappointmentToGo.Controllers
         [HttpGet]
         public ActionResult Checkout()
         {
+            if (user.Cart.CartItems.Count < 1)
+                return RedirectToAction("Index", "Home");
             return View();
         }
 

@@ -26,3 +26,11 @@ textarea {
 .no-decoration {
     text-decoration: none !important;
 }
+
+.cart-button {
+    font-size: xx-large;
+    text-decoration: none !important;
+}
+    .cart-button:hover {
+        text-shadow: 0 0 19px #3dff00;
+    }

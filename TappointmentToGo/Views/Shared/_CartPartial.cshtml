@@ -1,13 +1,9 @@
 ﻿@if (Request.IsAuthenticated)
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Cart", "Index", "Cart", routeValues: null, htmlAttributes: new { title = "Cart" })
-        </li>
-        <li>
-            <div class="text-info" id="cart-items-number">
-                @Html.Action("ItemsNumber", "Cart")
-            </div>
-        </li>
-    </ul>
+    <div class="nav navbar-nav navbar-right">
+        @Html.ActionLink("🛒", "Index", "Cart", routeValues: null, htmlAttributes: new { title = "Cart", @class = "cart-button"})
+        <div id="cart-items-number" class="badge progress-bar-success" style="vertical-align: top">
+            @Html.Action("ItemsNumber", "Cart")
+        </div>
+    </div>
 }

@@ -69,9 +69,7 @@
                 $("#cart-items-number").text($("#cart-items-number").text() - 0 + 1);
             });
 
-            request.fail(function (xhr, err) {
-                exceptionPopup(xhr);
-            });
+            request.fail(exceptionPopup);
         });
     })
 </script>
