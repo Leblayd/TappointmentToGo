@@ -75,13 +75,13 @@
                 url: `/api/Cart/${e.target.dataset["id"]}`
             });
 
-            request.done(function (d) {
-                popup("alert-success", "Success!", "Item added to cart.");
+            request.done(function (cart) {
+                Popup("alert-success", "Success!", "Item added to cart.");
 
-                $("#cart-items-number").text($("#cart-items-number").text() - 0 + 1);
+                $("#cart-items-number").text(cart.ItemsNumber);
             });
 
-            request.fail(exceptionPopup);
+            request.fail(ExceptionPopup);
         });
     })
 </script>

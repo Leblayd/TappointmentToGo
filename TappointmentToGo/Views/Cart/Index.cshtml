@@ -58,8 +58,8 @@
     else
     {
         <div class="jumbotron col-lg-8">
-            <h3>Your cart is empty.</h3>
-            Click @Html.ActionLink("Here", "Index", "Home") to go back and browse.
+            <h2>Your cart is empty.</h2>
+            <h4>Click @Html.ActionLink("Here", "Index", "Home") to go back and browse.</h4>
         </div>
     }
 
@@ -69,33 +69,48 @@
 
 @section scripts{
     <script>
+        function UpdateCart(cart) {
+            if (cart.Total === 0)
+                location.reload();
+            else {
+                $("#cart-items-number").text(cart.ItemsNumber);
+                $("#total-price").text(cart.Total);
+            }
+        }
+
+        function CartItemEdited(item) {
+            Popup("alert-info", "Success!", "Item count in cart modified.");
+            $(`#item-${item.Id}-count`)[0].defaultValue = item.Count;
+            $(`#item-${item.Id}-subtotal`).text(item.Price);
+        }
+
+        function CartItemDeleted(id) {
+            Popup("alert-info", "Success!", "Item deleted from cart.");
+            $(`#item-${id}`).remove();
+        }
+
         $(function () {
             $(".edit-in-cart-button").on("click",
                 function (e) {
                     let id = e.target.dataset["id"];
-                    let defaultCount = $(`#item-${id}-count`)[0].defaultValue - 0;
                     let count = $(`#item-${id}-count`).val() - 0;
 
-                    var request = $.ajax({
+                    let request = $.ajax({
                         type: "PUT",
                         url: `/api/Cart/${id}?count=${count}`
                     });
 
-                    request.done(function (data) {
-                        popup("alert-info", "Success!", "Item count in cart modified.");
-
-                        $("#cart-items-number").text($("#cart-items-number").text() - defaultCount + count);
-                        $(`#item-${id}-count`)[0].defaultValue = count;
-
-                        let subTotal = $(`#item-${id}-subtotal`);
-                        let priceDiff = (count - defaultCount) * $(`#item-${id}-price`).text();
-                        subTotal.text(subTotal.text() - 0 + priceDiff);
-
-                        $("#total-price").text($("#total-price").text() - 0 + priceDiff);
+                    request.done(function (cart) {
+                        item = cart.CartItems.filter(ci => ci.Id == id)[0];
+                        UpdateCart(cart);
+                        if (item.Count === 0)
+                            CartItemDeleted(item.Id);
+                        else
+                            CartItemEdited(item);
                     });
 
                     request.fail(function (xhr) {
-                        exceptionPopup(xhr);
+                        ExceptionPopup(xhr);
                         $(`#item-${id}-count`).val($(`#item-${id}-count`)[0].defaultValue);
                     });
                 }
@@ -104,27 +119,18 @@
             $(".remove-from-cart-button").on("click",
                 function (e) {
                     let id = e.target.dataset["id"];
-                    let defaultCount = $(`#item-${id}-count`)[0].defaultValue;
 
-                    var request = $.ajax({
+                    let request = $.ajax({
                         type: "DELETE",
                         url: `/api/Cart/${id}`
                     });
 
-                    request.done(function (data) {
-                        let newTotalPrice = $("#total-price").text() - $(`#item-${id}-subtotal`).text();
-                        if (newTotalPrice === 0)
-                            location.reload();
-                        else {
-                            popup("alert-info", "", "Item deleted from cart.");
-
-                            $("#cart-items-number").text(newTotalPrice);
-                            $("#total-price").text();
-                            $(`#item-${id}`).remove();
-                        }
+                    request.done(function (cart) {
+                        UpdateCart(cart);
+                        CartItemDeleted(id);
                     })
 
-                    request.fail(exceptionPopup);
+                    request.fail(ExceptionPopup);
                 }
             );
         })

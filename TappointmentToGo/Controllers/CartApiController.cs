@@ -20,10 +20,11 @@ namespace TappointmentToGo.Controllers.Api
         public CartController()
         {
             var userId = User.Identity.GetUserId();
-            user = context.Users
-                .Where(u => u.Id == userId)
-                .Include(u => u.Cart.CartItems.Select(ci => ci.MenuItem))
-                .Single();
+            if (userId != null)
+                user = context.Users
+                    .Where(u => u.Id == userId)
+                    .Include(u => u.Cart.CartItems.Select(ci => ci.MenuItem))
+                    .Single();
         }
 
         // POST: api/Cart/5
@@ -39,7 +40,7 @@ namespace TappointmentToGo.Controllers.Api
                 return InternalServerError(e);
             }
 
-            return SaveUserState();
+            return SaveUserStateAndReturnCart();
         }
 
         // PUT: api/Cart/5?count=3
@@ -55,7 +56,7 @@ namespace TappointmentToGo.Controllers.Api
                 return InternalServerError(e);
             }
             
-            return SaveUserState();
+            return SaveUserStateAndReturnCart();
         }
 
         // DELETE: api/Cart/5
@@ -64,10 +65,10 @@ namespace TappointmentToGo.Controllers.Api
         {
             user.Cart.Remove(context.CartItems.Find(id));
 
-            return SaveUserState();
+            return SaveUserStateAndReturnCart();
         }
 
-        private IHttpActionResult SaveUserState()
+        private IHttpActionResult SaveUserStateAndReturnCart()
         {
             // Hidden "bug" that returns a nonsensical number to confuse the user
             if (user.Cart.Total >= 10000 && user.Cart.CartItems.Sum(ci => ci.Count) > 1)
@@ -76,7 +77,7 @@ namespace TappointmentToGo.Controllers.Api
             context.Entry(user).State = EntityState.Modified;
             context.SaveChanges();
 
-            return Ok();
+            return Ok(user.Cart);
         }
     }
 }

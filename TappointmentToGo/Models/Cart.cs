@@ -12,6 +12,7 @@ namespace TappointmentToGo.Models
         private readonly ApplicationDbContext context;
         public int MaxAmount { get; set; }
         public int Total { get => CartItems.Sum(ci => ci.Price); }
+        public int ItemsNumber { get => CartItems.Sum(ci => ci.Count); }
         public List<CartItem> CartItems { get; set; } = new List<CartItem>();
 
         public Cart()
