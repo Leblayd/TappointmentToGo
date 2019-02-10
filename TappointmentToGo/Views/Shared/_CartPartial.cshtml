@@ -2,7 +2,7 @@
 {
     <div class="nav navbar-nav navbar-right">
         @Html.ActionLink("🛒", "Index", "Cart", routeValues: null, htmlAttributes: new { title = "Cart", @class = "cart-button"})
-        <div id="cart-items-number" class="badge progress-bar-success" style="vertical-align: top">
+        <div id="cart-items-number" class="badge progress-bar-success noselect" style="vertical-align: top">
             @Html.Action("ItemsNumber", "Cart")
         </div>
     </div>

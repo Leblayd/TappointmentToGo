@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Html.Name(Model.Name)</h2>
+<h2>@Html.Name(Model.NamePlural)</h2>
 
 <hr />
 <div class="row">
@@ -49,7 +49,9 @@
         </table>
     </div>
     <div class="col-lg-4 text-center" id="right-column">
-        <div class="category image-bg noselect" style="background-image: url(/Content/Images/@(Model.ImageName).jpg)">@Model.Name</div>
+        <div class="category image-bg noselect" style="background-image: url(/Content/Images/@(Model.ImageName).jpg)">
+            @Model.NamePlural
+        </div>
 
         <hr />
         @if (!User.Identity.IsAuthenticated)
