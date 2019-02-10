@@ -69,7 +69,7 @@ namespace TappointmentToGo.Controllers
 
             await context.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Finished", "Home", new { id = order.Id });
         }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
