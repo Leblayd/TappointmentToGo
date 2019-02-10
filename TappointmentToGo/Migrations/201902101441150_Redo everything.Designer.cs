@@ -7,13 +7,13 @@ namespace TappointmentToGo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedOrderandAddressdata : IMigrationMetadata
+    public sealed partial class Redoeverything : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedOrderandAddressdata));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Redoeverything));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902071443443_Added Order and Address data"; }
+            get { return "201902101441150_Redo everything"; }
         }
         
         string IMigrationMetadata.Source

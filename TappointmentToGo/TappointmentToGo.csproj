@@ -212,17 +212,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902051346247_Added MaxAmount to Cart.cs" />
-    <Compile Include="Migrations\201902051346247_Added MaxAmount to Cart.Designer.cs">
-      <DependentUpon>201902051346247_Added MaxAmount to Cart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902061312471_Fixed MenuItem.cs" />
-    <Compile Include="Migrations\201902061312471_Fixed MenuItem.Designer.cs">
-      <DependentUpon>201902061312471_Fixed MenuItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902071443443_Added Order and Address data.cs" />
-    <Compile Include="Migrations\201902071443443_Added Order and Address data.Designer.cs">
-      <DependentUpon>201902071443443_Added Order and Address data.cs</DependentUpon>
+    <Compile Include="Migrations\201902101441150_Redo everything.cs" />
+    <Compile Include="Migrations\201902101441150_Redo everything.Designer.cs">
+      <DependentUpon>201902101441150_Redo everything.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
@@ -254,6 +246,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -308,17 +304,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902051346247_Added MaxAmount to Cart.resx">
-      <DependentUpon>201902051346247_Added MaxAmount to Cart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902061312471_Fixed MenuItem.resx">
-      <DependentUpon>201902061312471_Fixed MenuItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902071443443_Added Order and Address data.resx">
-      <DependentUpon>201902071443443_Added Order and Address data.cs</DependentUpon>
-    </EmbeddedResource>
+    <Content Include="Views\Home\Finished.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -334,6 +320,11 @@
     </None>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902101441150_Redo everything.resx">
+      <DependentUpon>201902101441150_Redo everything.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

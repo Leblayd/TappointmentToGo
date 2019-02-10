@@ -59,7 +59,8 @@ namespace TappointmentToGo.Controllers
                 Address = model.Address,
                 Name = $"{model.LastName}, {model.FirstName}",
                 Telephone = model.Telephone,
-                Cart = user.Cart
+                Cart = user.Cart,
+                User = user
             };
             context.Entry(order).State = EntityState.Added;
 

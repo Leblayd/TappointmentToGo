@@ -12,5 +12,6 @@ namespace TappointmentToGo.Models
         [Required] public string Name { get; set; }
         [Required] public string Telephone { get; set; }
         [Required] public Address Address { get; set; }
+        [Required] public ApplicationUser User { get; set; }
     }
 }
