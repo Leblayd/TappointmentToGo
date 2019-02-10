@@ -35,21 +35,6 @@ namespace TappointmentToGo.Controllers
             return View(category);
         }
 
-        // GET: Cart/Finished/2
-        [HttpGet]
-        public ActionResult Finished(int id)
-        {
-            var order = db.Orders
-                .Include(o => o.User)
-                .Include(o => o.Address)
-                .Include(o => o.Cart.CartItems.Select(ci => ci.MenuItem))
-                .First(o => o.Id == id);
-
-            if (order == null || order.User.Id != User.Identity.GetUserId())
-                return HttpNotFound();
-            return View(order);
-        }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

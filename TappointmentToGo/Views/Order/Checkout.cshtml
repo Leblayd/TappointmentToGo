@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Checkout", "Cart", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Checkout", "Order", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <h4>Please enter your details to order.</h4>

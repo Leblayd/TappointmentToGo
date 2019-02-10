@@ -38,40 +38,6 @@ namespace TappointmentToGo.Controllers
             return user.Cart.ItemsNumber;
         }
 
-        // GET: Cart/Checkout
-        [HttpGet]
-        public ActionResult Checkout()
-        {
-            if (user.Cart.CartItems.Count < 1)
-                return RedirectToAction("Index", "Home");
-            return View();
-        }
-
-        // POST: Cart/Checkout
-        [HttpPost]
-        public async Task<ActionResult> Checkout(OrderViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
-
-            var order = new Order
-            {
-                Address = model.Address,
-                Name = $"{model.LastName}, {model.FirstName}",
-                Telephone = model.Telephone,
-                Cart = user.Cart,
-                User = user
-            };
-            context.Entry(order).State = EntityState.Added;
-
-            user.NewEmptyCart();
-            context.Entry(user.Cart).State = EntityState.Added;
-
-            await context.SaveChangesAsync();
-
-            return RedirectToAction("Finished", "Home", new { id = order.Id });
-        }
-
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
