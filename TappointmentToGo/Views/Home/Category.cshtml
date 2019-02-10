@@ -49,9 +49,9 @@
         </table>
     </div>
     <div class="col-lg-4 text-center" id="right-column">
-        <h2>
-            @Html.DisplayFor(model => model.Name)
-        </h2>
+        <div class="category image-bg noselect" style="background-image: url(/Content/Images/@(Model.ImageName).jpg)">@Model.Name</div>
+
+        <hr />
         @if (!User.Identity.IsAuthenticated)
         {
             <strong>
@@ -59,10 +59,12 @@
                 @Html.ActionLink("register", "Register", "Account") to be able to use the cart.
             </strong>
         }
-        <hr />
-        <h4>
-            @Html.ActionLink("Go back", "Index", null, new { @class = "btn btn-primary btn-block" })
-        </h4>
+        else if (int.Parse(Html.Action("ItemsNumber", "Cart").ToString()) > 0)
+        {
+            @Html.ActionLink("Checkout", "Checkout", "Order", null, new { @class = "btn btn-block btn-success" })
+            @Html.ActionLink("Cart", "Index", "Cart", null, new { @class = "btn btn-block btn-primary" })
+        }
+        @Html.ActionLink("Go back", "Index", null, new { @class = "btn btn-warning btn-block" })
     </div>
 </div>
 

@@ -35,20 +35,44 @@ textarea {
     font-size: large;
 }
 
-.category-button {
-    color: white;
-    font-family: cursive;
-    font-weight: bolder;
+.no-decoration {
     text-decoration: none !important;
-    font-size: x-large;
-    border-radius: 12px;
-    background-color: #afd8a3;
-    margin: 20px 0;
-    padding: 20px 0;
 }
-    .category-button:hover {
-        background-color: #7db76b;
-        color: white;
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.category {
+    color: white !important;
+    font-family: cursive;
+    font-weight: bold;
+    font-size: xx-large;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    border-radius: 12px;
+    padding: 30px 0;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.image-bg {
+    background-color: #ffffff55;
+    background-size: cover;
+    background-position-y: center;
+    background-blend-mode: screen;
+}
+    .image-bg:hover {
+        background-color: #ffffff25;
+    }
+    .image-bg:active {
+        background-color: transparent;
     }
 
 .animate-pop {

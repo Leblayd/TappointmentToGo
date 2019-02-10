@@ -10,7 +10,9 @@
 <div class="row text-center">
     @foreach (var item in Model)
     {
-        @* TODO Replace the plain colored buttons with background images *@
-        @Html.ActionLink(item.Name, "Category", "Home", new { id = item.Id }, new { @class = "row col-md-4 category-button" })
+        @Html.ActionLink(item.Name, "Category", "Home", new { id = item.Id }, new {
+            @class = "row col-md-4 no-decoration category image-bg",
+            style = $"background-image: url(/Content/Images/{item.ImageName}.jpg)"
+        })
     }
 </div>

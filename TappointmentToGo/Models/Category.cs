@@ -9,5 +9,6 @@ namespace TappointmentToGo.Models
     {
         public string Name { get; set; }
         public List<MenuItem> MenuItems { get; set; }
+        public string ImageName { get => Name.Replace(" ", string.Empty); }
     }
 }
