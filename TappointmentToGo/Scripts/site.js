@@ -12,3 +12,17 @@
 function ExceptionPopup(exceptionXhr) {
     Popup("alert-danger", "Error!", exceptionXhr.responseJSON["ExceptionMessage"]);
 }
+
+function UpdateCartItems(number) {
+    $("#cart-items-number").text(number);
+    $("#cart-items-number").change();
+}
+
+$(function () {
+    let cartItems = $("#cart-items-number");
+    cartItems.change(function () {
+        cartItems.removeClass("animate-pop");
+        void cartItems[0].offsetWidth; // necessary to reset the animation
+        cartItems.addClass("animate-pop");
+    });
+});

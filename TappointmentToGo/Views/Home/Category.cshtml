@@ -78,7 +78,7 @@
             request.done(function (cart) {
                 Popup("alert-success", "Success!", "Item added to cart.");
 
-                $("#cart-items-number").text(cart.ItemsNumber);
+                UpdateCartItems(cart.ItemsNumber);
             });
 
             request.fail(ExceptionPopup);

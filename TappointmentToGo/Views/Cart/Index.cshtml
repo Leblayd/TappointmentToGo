@@ -73,7 +73,7 @@
             if (cart.Total === 0)
                 location.reload();
             else {
-                $("#cart-items-number").text(cart.ItemsNumber);
+                UpdateCartItems(cart.ItemsNumber);
                 $("#total-price").text(cart.Total);
             }
         }
