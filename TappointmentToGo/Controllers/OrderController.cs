@@ -15,6 +15,18 @@ namespace TappointmentToGo.Controllers
         private ApplicationDbContext context = new ApplicationDbContext();
         private ApplicationUser user;
 
+        [HttpGet]
+        public ActionResult Index()
+        {
+            var orders = context.Orders
+                .Include(o => o.Address)
+                .Include(o => o.Cart.CartItems.Select(ci => ci.MenuItem))
+                .Where(o => o.User.Id == user.Id)
+                .ToList();
+
+            return View(orders);
+        }
+
         // GET: Order/Checkout
         [HttpGet]
         public ActionResult Checkout()

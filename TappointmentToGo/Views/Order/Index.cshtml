@@ -1,0 +1,14 @@
+﻿@model IEnumerable<TappointmentToGo.Models.Order>
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+<h2>Orders</h2>
+
+@foreach (var item in Model)
+{
+    <div>
+        @Html.Partial("_OrderDetails",item)
+    </div>
+}

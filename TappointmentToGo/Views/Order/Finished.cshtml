@@ -10,45 +10,5 @@
 <h3>
     Your order details
 </h3>
-<dl class="dl-horizontal jumbotron" style="font-size: large; background-color: lightgray">
-    <dt>Name</dt>
-    <dd>@Html.Name(Model.Name)</dd>
-
-    <dt>Address</dt>
-    <dd>@Html.Name(Model.Address.City + Model.Address.Street + Model.Address.Number)</dd>
-
-    <dt>Telephone</dt>
-    <dd>@Html.Name(Model.Telephone)</dd>
-
-    <dt>Cart:</dt>
-    <dd>
-        <table class="jumbotron table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Count</th>
-                    <th>Total</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Cart.CartItems)
-                {
-                    <tr>
-                        <td>@item.MenuItem.Name</td>
-                        <td>@item.Count</td>
-                        <td>@item.Price</td>
-                        <td>@item.MenuItem.Price</td>
-                    </tr>
-                }
-                <tr style="font-weight:bold; border-top: 3px solid lightgray">
-                    <td>Total</td>
-                    <td>@Model.Cart.ItemsNumber</td>
-                    <td>@Model.Cart.Total</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </dd>
-</dl>
+@Html.Partial("_OrderDetails")
 <h4>Click <a href="@Url.Action("Index", "Home")">here</a> to go back and browse</h4>

@@ -25,6 +25,9 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Orders", "Index", "Order")</li>
+                </ul>
                 @Html.Partial("_CartPartial")
             </div>
         </div>
